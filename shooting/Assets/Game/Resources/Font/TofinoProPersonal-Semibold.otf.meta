@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: cce2471245c1bd74d91193f0af7262df
+timeCreated: 1526350346
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Tofino Pro Personal
+  fontNames:
+  - Tofino Pro Personal
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6ac50e82ddb39a24a8bcdaa5b6f94222, type: 3}
+  - {fileID: 12800000, guid: 771143c3e7be9bf469cbd645250c49f2, type: 3}
+  - {fileID: 12800000, guid: b80fcbef1673e7948a87591edcf081b1, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
