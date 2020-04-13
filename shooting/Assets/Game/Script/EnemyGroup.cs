@@ -10,14 +10,14 @@ public class EnemyGroup : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        for(int i = 0; i < transform.childCount; i++)
         {
             var child = transform.GetChild(i); //slot
             var go = GameObject.Instantiate<GameObject>(enemyTemplete);
             go.SetActive(true);
             go.transform.SetParent(child);
             go.transform.localPosition = Vector3.zero;
-        }
+        }        
     }
 
     // Update is called once per frame

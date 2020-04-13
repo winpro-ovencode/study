@@ -52,11 +52,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 screenBounds;
     
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         SQLiteLoaderClient loader = new SQLiteLoaderClient();
-        if(loader.Load("StreamingAssets/GameData/_game.db3"))
+        if(loader.Load("Assets/GameData/_game.db3"))
         {
             LocalDataTable.LoadAll(loader);
             LocalDataTable.LoadComplete();

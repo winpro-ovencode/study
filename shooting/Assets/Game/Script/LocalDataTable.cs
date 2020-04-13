@@ -8,15 +8,14 @@ using UnityEngine;
 
 public partial class DataEnemy : SqliteDB<DataEnemy>, ILocalTable
 {
-    private static Dictionary<Int32, DataEnemy> _Get = new Dictionary<Int32, DataEnemy>();
 
-    private static string _ColumnNames = "[id],[name],[prefab],[hp]";
-    public static string _QuotedTableName = "t_Enemy";
+    private static string _ColumnNames = "[id],[name],[image],[hp]";
+    public static string _QuotedTableName = "Enemy";
     private static List<DataEnemy> cashedList = new List<DataEnemy>();
 
     public Int32 id { get; set; }
     public String name { get; set; }
-    public String prefab { get; set; }
+    public String image { get; set; }
     public Int32 hp { get; set; }
 
     public override string ToString()
@@ -28,8 +27,8 @@ public partial class DataEnemy : SqliteDB<DataEnemy>, ILocalTable
           text += "name=";
           if(this.name!=null) text += this.name;
           text += ", ";
-          text += "prefab=";
-          if(this.prefab!=null) text += this.prefab;
+          text += "image=";
+          if(this.image!=null) text += this.image;
           text += "]";
           return text;
     }
@@ -40,21 +39,6 @@ public partial class DataEnemy : SqliteDB<DataEnemy>, ILocalTable
         DataEnemy table = new DataEnemy();
         cashedList = table.ReadAll(con, _ColumnNames, _QuotedTableName);
 
-        foreach(DataEnemy data in cashedList)
-        {
-           _Get.Add(data.id, data);
-        }
-    }
-
-    public static DataEnemy GetGet(Int32 id)
-    {
-        DataEnemy value;
-        if(!_Get.TryGetValue(id, out value))
-        {
-             return null;
-        }
-
-        return value;
     }
 
     static public List<DataEnemy> GetAll()
@@ -77,7 +61,7 @@ public partial class DataEnemy : SqliteDB<DataEnemy>, ILocalTable
 
         id = ToInt32(dataReader, "id");
         name = ToString(dataReader, "name");
-        prefab = ToString(dataReader, "prefab");
+        image = ToString(dataReader, "image");
         hp = ToInt32(dataReader, "hp");
     }
 
@@ -85,7 +69,6 @@ public partial class DataEnemy : SqliteDB<DataEnemy>, ILocalTable
     {
         cashedList.Clear();
 
-        _Get.Clear();
     }
     static public void LoadComplete()
     {
@@ -97,9 +80,8 @@ public partial class DataEnemy : SqliteDB<DataEnemy>, ILocalTable
 
 public partial class DataLevel : SqliteDB<DataLevel>, ILocalTable
 {
-    private static Dictionary<Int32, DataLevel> _Get = new Dictionary<Int32, DataLevel>();
 
-    private static string _ColumnNames = "[id],[distance],[backgroundSpeed],[enemySpeed],[enemyDelay],[enemy]";
+    private static string _ColumnNames = "[id],[distance],[backgroundSpeed],[enemySpeed],[enemyDelay]";
     public static string _QuotedTableName = "t_Level";
     private static List<DataLevel> cashedList = new List<DataLevel>();
 
@@ -108,7 +90,6 @@ public partial class DataLevel : SqliteDB<DataLevel>, ILocalTable
     public Single backgroundSpeed { get; set; }
     public Single enemySpeed { get; set; }
     public Single enemyDelay { get; set; }
-    public Int32 enemy { get; set; }
 
     public override string ToString()
     {
@@ -131,21 +112,6 @@ public partial class DataLevel : SqliteDB<DataLevel>, ILocalTable
         DataLevel table = new DataLevel();
         cashedList = table.ReadAll(con, _ColumnNames, _QuotedTableName);
 
-        foreach(DataLevel data in cashedList)
-        {
-           _Get.Add(data.id, data);
-        }
-    }
-
-    public static DataLevel GetGet(Int32 id)
-    {
-        DataLevel value;
-        if(!_Get.TryGetValue(id, out value))
-        {
-             return null;
-        }
-
-        return value;
     }
 
     static public List<DataLevel> GetAll()
@@ -171,14 +137,12 @@ public partial class DataLevel : SqliteDB<DataLevel>, ILocalTable
         backgroundSpeed = ToFloat(dataReader, "backgroundSpeed");
         enemySpeed = ToFloat(dataReader, "enemySpeed");
         enemyDelay = ToFloat(dataReader, "enemyDelay");
-        enemy = ToInt32(dataReader, "enemy");
     }
 
     static public void Clear()
     {
         cashedList.Clear();
 
-        _Get.Clear();
     }
     static public void LoadComplete()
     {
