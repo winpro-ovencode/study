@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,28 +11,12 @@ public class Enemy : MonoBehaviour
     public Item PowerItem;
     public Item GemItem;
     private PlayerController mPlayer;
-    public SpriteRenderer WingLeft;
-    public SpriteRenderer WingRight;
-    public SpriteRenderer EyeRight;
-    public SpriteRenderer EyeLeft;
-    private SpriteRenderer Body;
-
     int HP = 2;
 
     private void Start()
     {
         var go = GameObject.FindGameObjectWithTag("Player");
         mPlayer = go.GetComponent<PlayerController>();
-        Body = GetComponent<SpriteRenderer>();
-    }
-
-    public void SetEnemy(int id)
-    {
-        var enemy = DataEnemy.GetAll().Find(w => w.id == id);
-        HP = enemy.hp;
-
-        var texture = Resources.Load<Sprite>($"Assets/Resources/Sprite/{enemy.image}_0");
-        Body.sprite = texture;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     private void CreateRandomItem()
     {
-        int value = Random.Range(0, 10);
+        int value = UnityEngine.Random.Range(0, 10);
 
         Item go;
 
@@ -77,7 +62,7 @@ public class Enemy : MonoBehaviour
         } else
         {
             go = GameObject.Instantiate<Item>(CoinItem);
-            int coin = Random.Range(1, 5);
+            int coin = UnityEngine.Random.Range(1, 5);
             go.SetItem(ItemType.Coin, coin);
         }
 
@@ -87,5 +72,10 @@ public class Enemy : MonoBehaviour
 
         Physics2D.IgnoreCollision(enemyColi, itemColi);
         Destroy(go, 2.0f);
+    }
+
+    public void SetData(DataEnemy enemy)
+    {
+        HP = enemy.hp;
     }
 }

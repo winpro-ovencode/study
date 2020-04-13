@@ -75,6 +75,8 @@ public class SQLiteLoaderClient : ISQLiteLoader
         logBuilder.AppendFormat("1asset path is: {0}\n", dbpath);
         WWW www = new WWW(dbpath);
         while (!www.isDone) { }
+        if(www.error != null)
+            Debug.LogError(www.error + dbpath);
         //yield return www;
         bytes = www.bytes;
 
