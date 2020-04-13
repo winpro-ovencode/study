@@ -465,15 +465,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95ad2dd555064ad2a25c9961a871689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Bomb: {fileID: 0}
-  CoinItem: {fileID: 0}
-  MagnetItem: {fileID: 0}
-  PowerItem: {fileID: 0}
-  GemItem: {fileID: 0}
-  WingLeft: {fileID: 0}
-  WingRight: {fileID: 0}
-  EyeRight: {fileID: 0}
-  EyeLeft: {fileID: 0}
+  Bomb: {fileID: 4200748505990947744, guid: 6f492ad617352ae46812b59b2df5660b, type: 3}
+  CoinItem: {fileID: 597218583314846127, guid: 67d9d9076cb5b2e4ba8b5e3fec035785, type: 3}
+  MagnetItem: {fileID: 7379721510872527326, guid: ee0be84fd73ef754ca657f13f1c4e6bc,
+    type: 3}
+  PowerItem: {fileID: 398685203201957479, guid: bd58f80f9c3412540b1cc1ae8a9a4fa4,
+    type: 3}
+  GemItem: {fileID: 6676516248788967177, guid: e239f375c6bf74d44a1d1112845345d0, type: 3}
 --- !u!1 &4228012017865111423
 GameObject:
   m_ObjectHideFlags: 0

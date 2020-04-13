@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public Item PowerItem;
     public Item GemItem;
     private PlayerController mPlayer;
-    int HP = 2;
+    int HP;
 
     private void Start()
     {

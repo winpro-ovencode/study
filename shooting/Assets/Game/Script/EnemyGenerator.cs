@@ -7,10 +7,10 @@ public class EnemyGenerator : MonoBehaviour
     public BackgroundRepeat background;
     public EnemyGroup enemyOrigin;
     public float delay = 3f;
+
     private float timer = 0;
     private List<DataLevel> levelData;
     private Enemy currentEnemy;
-
     private int currentLevel;
 
     // Start is called before the first frame update
@@ -27,7 +27,7 @@ public class EnemyGenerator : MonoBehaviour
         var enemy = DataEnemy.GetGet(dataLevel.enemy);
         var enemyPrefab = Resources.Load<Enemy>(enemy.prefab);
         currentEnemy = GameObject.Instantiate<Enemy>(enemyPrefab);
-        currentEnemy.SetData(enemy);
+        currentEnemy.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -48,11 +48,14 @@ public class EnemyGenerator : MonoBehaviour
 
         if (timer > delay)
         {
+            var dataLevel = DataLevel.GetGet(currentLevel);
+            var enemy = DataEnemy.GetGet(dataLevel.enemy);
+
             EnemyGroup go = Instantiate<EnemyGroup>(enemyOrigin);
-            go.gameObject.SetActive(true);
             go.transform.position = transform.position;
+            go.gameObject.SetActive(true);
+            go.BatchAll(currentEnemy, enemy);
             timer = 0;
-            go.enemyTemplete = currentEnemy.gameObject;
         }
 
         timer += Time.deltaTime;
