@@ -4,9 +4,11 @@ using UnityEngine;
 public class BackgroundRepeat : MonoBehaviour
 {
     public float moveSpeed = 1f;
+    public float distance;
 
     List<SpriteRenderer> mChild;
     float mHeight;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +26,14 @@ public class BackgroundRepeat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float moveY = Time.deltaTime * moveSpeed;
+
         foreach(var bg in mChild)
         {
-            float moveY = moveSpeed * Time.deltaTime;
             bg.transform.Translate(0, -moveY, 0);
         }
+
+        distance += moveY;
 
         foreach(var bg in mChild)
         {
